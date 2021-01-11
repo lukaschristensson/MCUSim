@@ -1,0 +1,64 @@
+140C;DOUT -> first combination, day and night
+0013;__WAIT
+1801;IN_XOR -> if 10, then night, else day
+0400;BZ -> if night and no car, then start over, else do the day cycle
+140A;DOUT -> rest of the day cycle
+0013;__WAIT
+1409;
+0013;__WAIT
+1419;
+0013;__WAIT
+1421;
+0013;__WAIT
+1411;
+0013;__WAIT
+1409;
+0013;__WAIT
+140B;
+0013;__WAIT
+0600;B -> start over from the beginning
+0EC8;LD -> load 200 into reg0, __WAIT waits for 200 * 3 = 600 cycles
+0A01;SUB -> sub 1 from reg0
+0417;BZ -> if reg0 is 0, then return
+0614;B -> else, keep counting
+0200;RET -> return from wait function
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
+0000;
