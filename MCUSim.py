@@ -81,6 +81,16 @@ def bitWiseAND(a, b):
                 res += '0'
     return res, '1' not in res
 
+def bitWiseOR(a, b):
+    res = ''
+    for i in a:
+        for j in b:
+            if i == '1' or j == '1':
+                res += '1'
+            else:
+                res += '0'
+    return res, '1' not in res
+
 
 def pushStack(x, mcu):
     for i in reversed(range(1, len(mcu.stack))):
@@ -133,12 +143,13 @@ class MCU:
         '10': popStack
     }
     alu = {
+        '000': lambda a, b: (a, a == '00000000'),
+        '001': lambda a, b: (b, b == '00000000'),
         '010': lambda a, b: (
             fromIntToString(fromStringToInt(a) + fromStringToInt(b)), fromStringToInt(a) + fromStringToInt(b) == 0),
         '011': lambda a, b: MCU.alu['010'](twosComp(a), b),
-        '000': lambda a, b: (a, a == '00000000'),
-        '001': lambda a, b: (b, b == '00000000'),
         '100': bitWiseAND,
+        '101': bitWiseOR,
         '110': bitWiseXOR,
         '111': lambda a, b: ('0' * 8, 1)
     }
